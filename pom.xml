@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>TestNG-Maven</artifactId>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+          <parallel>tests</parallel>
+
+          <perCoreThreadCount>false</perCoreThreadCount>
+
+          <suiteXmlFiles>
+            <suiteXmlFile>alltests.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <systemPropertyVariables>
+            <browser.height>${browserHeight}</browser.height>
+            <browser.type>${browser}</browser.type>
+            <browser.width>${browserWidth}</browser.width>
+          </systemPropertyVariables>
+          <threadCount>3</threadCount>
+
+        </configuration>
+        <dependencies>
+          <dependency>
+            <artifactId>aspectjweaver</artifactId>
+            <groupId>org.aspectj</groupId>
+            <version>${aspectj.version}</version>
+          </dependency>
+        </dependencies>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.0.0-M8</version>
+      </plugin>
+
+      <plugin>
+        <artifactId>allure-maven</artifactId>
+        <configuration>
+          <reportDirectory>target/allure-report</reportDirectory>
+          <reportVersion>${allure.integration.version}</reportVersion>
+          <reportingOutputDirectory>target/allure-maven-plugin</reportingOutputDirectory>
+        </configuration>
+        <groupId>io.qameta.allure</groupId>
+        <version>2.12.0</version>
+      </plugin>
+
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <artifactId>allure-testng</artifactId>
+      <groupId>io.qameta.allure</groupId>
+      <version>${allure.integration.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>testng</artifactId>
+      <groupId>org.testng</groupId>
+      <scope>test</scope>
+      <version>6.14.3</version>
+    </dependency>
+    <dependency>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <groupId>org.apache.maven.plugins</groupId>
+      <version>3.0.0-M8</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>webdrivermanager</artifactId>
+      <groupId>io.github.bonigarcia</groupId>
+      <version>5.3.2</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>selenium-java</artifactId>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <version>4.8.0</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>assertj-core</artifactId>
+      <groupId>org.assertj</groupId>
+      <version>3.24.2</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <scope>provided</scope>
+      <version>1.18.26</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>javafaker</artifactId>
+      <groupId>com.github.javafaker</groupId>
+      <version>1.0.2</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>log4j-api</artifactId>
+      <groupId>org.apache.logging.log4j</groupId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>log4j-core</artifactId>
+      <groupId>org.apache.logging.log4j</groupId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <groupId>org.apache.logging.log4j</groupId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>javafaker</artifactId>
+      <groupId>com.github.javafaker</groupId>
+      <version>1.0.2</version>
+    </dependency>
+    <dependency>
+      <artifactId>testng</artifactId>
+      <groupId>org.testng</groupId>
+      <scope>compile</scope>
+      <version>7.4.0</version>
+    </dependency>
+
+
+  </dependencies>
+  <groupId>org.example</groupId>
+
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <properties>
+    <allure.integration.version>2.13.2</allure.integration.version>
+    <aspectj.version>1.9.19</aspectj.version>
+    <browser>CHROME</browser>
+    <browserHeight>1080</browserHeight>
+    <browserWidth>1920</browserWidth>
+    <log4j.version>2.17.2</log4j.version>
+    <!--    default value-->
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <suite>alltests.xml</suite>
+  </properties>
+
+  <version>1.0-SNAPSHOT</version>
+
+
+</project>
