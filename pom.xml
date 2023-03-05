@@ -78,7 +78,7 @@
     <dependency>
       <artifactId>selenium-java</artifactId>
       <groupId>org.seleniumhq.selenium</groupId>
-      <version>4.8.0</version>
+      <version>4.8.1</version>
     </dependency>
 
     <dependency>
@@ -138,8 +138,8 @@
     <allure.integration.version>2.13.2</allure.integration.version>
     <aspectj.version>1.9.19</aspectj.version>
     <browser>CHROME</browser>
-    <browserHeight>1080</browserHeight>
-    <browserWidth>1920</browserWidth>
+    <browserHeight>900</browserHeight>
+    <browserWidth>1440</browserWidth>
     <log4j.version>2.17.2</log4j.version>
     <!--    default value-->
     <maven.compiler.source>8</maven.compiler.source>
