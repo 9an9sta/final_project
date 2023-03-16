@@ -71,5 +71,9 @@ public class BasePage {
     jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
   }
 
+  public void hoverToElementByLocator(WebElement locator){
+    Actions actions = new Actions(getDriver());
+    actions.moveToElement(locator).perform();
+  }
 
 }
