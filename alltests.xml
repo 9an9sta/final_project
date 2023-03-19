@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+
+<suite name="Test">
+
+    <listeners>
+        <listener class-name="framework.listeners.MyListener"/>
+    </listeners>
+
+    <test name="Test #1">
+        <classes>
+            <class name="ui.FirstCase">
+            </class>
+        </classes>
+    </test>
+    <test name="Test #2">
+        <classes>
+            <class name="ui.SecondCase">
+            </class>
+        </classes>
+    </test>
+    <test name="Test #3">
+        <classes>
+            <class name="ui.ThirdCase">
+            </class>
+        </classes>
+    </test>
+    <test name="Test #4">
+        <classes>
+            <class name="ui.FourthCase">
+            </class>
+        </classes>
+    </test>
+    <test name="Test #5">
+        <classes>
+            <class name="ui.FifthCase">
+            </class>
+        </classes>
+    </test>
+    <test name="Test #6">
+        <classes>
+            <class name="ui.SixCase">
+            </class>
+        </classes>
+    </test>
+    <test name="Test #7">
+        <classes>
+            <class name="ui.SevenCase">
+            </class>
+        </classes>
+    </test>
+    <test name="Test #8">
+        <classes>
+            <class name="ui.EighthCase">
+            </class>
+        </classes>
+    </test>
+
+</suite>

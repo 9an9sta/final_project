@@ -2,11 +2,15 @@ package ui;
 
 import framework.BrowserFactory;
 import framework.pages.BasePage;
+import framework.pages.MainPage;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.time.Duration;
 
 @Log4j2
 public class BaseTest {
@@ -24,6 +28,8 @@ public class BaseTest {
     driver.get("https://demo.prestashop.com/");
     driver.manage().window().setSize(new Dimension(width, height));
     BasePage.setDriverThreadLocal(driver);
+    BasePage.wait = new WebDriverWait(BasePage.getDriver(), Duration.ofSeconds(20));
+    BasePage.waitUntilPageAreLoading(BasePage.loaderLocator);
   }
 
   @AfterMethod(alwaysRun = true)
@@ -33,6 +39,7 @@ public class BaseTest {
       BasePage.getDriverThreadLocal().remove();
     }
   }
+
 
 
 }

@@ -14,8 +14,10 @@ public class SecondCase extends BaseTest{
     softly.assertThat(actualLanguageCountInHeaderSelect)
             .as("Current Language count in header select is not 44")
             .isEqualTo(44);
-    System.out.println(mainPage.checkThatUkraineLanguageIsPresentInHeaderSelect());
-
+    Boolean IsUkrainianLanguageIsPresent = mainPage.checkIfLanguagesSelectorHasUkraineLanguage();
+    softly.assertThat(IsUkrainianLanguageIsPresent)
+            .as("Ukrainian language aren't present")
+            .isTrue();
 
     softly.assertAll();
 

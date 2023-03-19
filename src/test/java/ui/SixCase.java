@@ -5,7 +5,6 @@ import framework.pages.components.MainProductComponents;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SixCase extends BaseTest{
@@ -13,17 +12,17 @@ public class SixCase extends BaseTest{
     @Test
     public void checkPopularProducts(){
         mainPage.switchToFrame();
-        List<MainProductComponents> products = mainPage.getMainComponents();
-        int actualMainPageProductCount = products.size();
+        List<MainProductComponents> mainComponents = MainProductComponents.getComponentsFromPage(MainPage.mainProductsComponentsLocator);
+        int actualMainPageProductCount = mainComponents.size();
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(actualMainPageProductCount)
                 .as("More than 8 products exist in 'POPULAR PRODUCTS' section")
                 .isEqualTo(8);
-        List<String> actualProductNamesList = mainPage.getNameFromMainProducts();
+        List<String> actualProductNamesList = MainProductComponents.getNameFromComponents();
         softly.assertThat(actualProductNamesList)
                 .as("Missing name in one product")
                 .isNotNull();
-        List<String> actualProductPriseList = mainPage.getPriceFromMainProducts();
+        List<String> actualProductPriseList = MainProductComponents.getPriceFromComponents();
         softly.assertThat(actualProductPriseList)
                 .as("Missing price in one product")
                 .isNotNull();
