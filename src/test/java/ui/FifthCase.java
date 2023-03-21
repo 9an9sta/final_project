@@ -4,7 +4,6 @@ import framework.helpers.MenuCategoryHelper;
 import framework.pages.MainPage;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-import java.util.Arrays;
 import java.util.List;
 public class FifthCase extends BaseTest{
     private final MainPage mainPage = new MainPage();
@@ -16,7 +15,6 @@ public class FifthCase extends BaseTest{
         softly.assertThat(actualClothesCategoryItem)
                 .as("'MEN' and 'WOMEN' sub menu items not appears in [Clothes] category")
                 .containsExactlyElementsOf(expectedClothesCategoryItem);
-
         List<String> actualAccessoriesCategoryItem = mainPage.getCategoryFromHeaderMenu(MenuCategoryHelper.MenuCategory.ACCESSORIES);
         List<String> expectedAccessoriesCategoryItem =  mainPage.expectedCategoryItemsFromHeaderMenu(MenuCategoryHelper.MenuSubCategory.ACCESSORIES_ITEMS);
         softly.assertThat(actualAccessoriesCategoryItem)
@@ -27,6 +25,5 @@ public class FifthCase extends BaseTest{
                 .as(" that no any sub category appears in [Art]")
                 .isEmpty();
         softly.assertAll();
-
     }
 }

@@ -2,8 +2,6 @@ package framework.pages;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-
-
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -128,17 +126,5 @@ public class RegisterPage extends BasePage{
         log.info("Get Firs Name Alert");
         return find(alertFirstNameLocator).getText();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -2,7 +2,6 @@ package ui;
 
 import framework.BrowserFactory;
 import framework.pages.BasePage;
-import framework.pages.MainPage;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +39,5 @@ public class BaseTest {
       BasePage.getDriverThreadLocal().remove();
     }
   }
-
-
 
 }

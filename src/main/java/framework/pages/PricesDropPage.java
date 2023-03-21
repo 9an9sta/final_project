@@ -3,14 +3,11 @@ package framework.pages;
 import framework.pages.components.MainProductComponents;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 @Log4j2
 public class PricesDropPage extends BasePage{
-    public static final By priceDropComponentLocator = By.xpath("//div/article[contains(@class, 'product-miniature')]");
     @Step("Checking that all products has old and new price")
     public List<String> checkThatEveryProductHasOldAndNewPrice(){
         log.info("Checking that all products has old and new price");
@@ -28,7 +25,7 @@ public class PricesDropPage extends BasePage{
     @Step("Get calculated product price")
     public List <String> getExpectedProductPriceWithDiscount() {
         log.info("Get calculated product price");
-        List<String> RegularPriceList = MainProductComponents.getRegularPriceFromComponents();
+        List<String> RegularPriceList = MainProductComponents.getProductRegularPriceFromPage();
         List<String> expectedPriceWithDiscount = new ArrayList<>();
 
         for (String regularPrice : RegularPriceList) {

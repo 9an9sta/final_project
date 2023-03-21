@@ -1,11 +1,10 @@
 package framework.pages;
 
 import framework.helpers.SortByHelpers;
-import framework.pages.components.HomeProductComponent;
+import framework.pages.components.MainProductComponents;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -49,7 +48,7 @@ public class HomePage extends BasePage{
     @Step("Get sorted By Name list from A to Z")
     public List<String> getSortedListByNameFromAToZ(){
     log.info("Get sorted By Name list from A to Z");
-        List<String> actualProductNamesList = HomeProductComponent.getProductsName();
+        List<String> actualProductNamesList = MainProductComponents.getProductNameFromPage();
         List<String> productsName = new ArrayList<>();
         for (String product : actualProductNamesList) {
             productsName.add(product);
@@ -60,7 +59,7 @@ public class HomePage extends BasePage{
     @Step("Get sorted By Name list from Z to A")
     public List<String> getSortedListByNameFromZToA(){
     log.info("Get sorted By Name list from Z to A");
-        List<String> actualProductNamesList = HomeProductComponent.getProductsName();
+        List<String> actualProductNamesList = MainProductComponents.getProductNameFromPage();
         List<String> productsName = new ArrayList<>();
         for (String product : actualProductNamesList) {
             productsName.add(product);
@@ -72,7 +71,7 @@ public class HomePage extends BasePage{
     @Step("Get sorted By Price list from Low to High")
     public List<Double> getSortedListPriceToLowToHigh(){
     log.info("Get sorted By Price list from Low to High");
-        List<Double> actualProductPriceList = HomeProductComponent.getProductPrice();
+        List<Double> actualProductPriceList = MainProductComponents.getProductPrice();
         List<Double> productsPrice = new ArrayList<>();
         for (Double product : actualProductPriceList) {
             productsPrice.add(product);
@@ -84,21 +83,11 @@ public class HomePage extends BasePage{
     @Step("Get sorted By Price list from High to Low")
     public List<Double> getSortedListPriceToHighToLow(){
     log.info("Get sorted By Price list from High to Low");
-        List<Double> actualProductPriceList = HomeProductComponent.getProductPrice();
-        List<Double> productsPrice = new ArrayList<>();
-        for (Double product : actualProductPriceList) {
-            productsPrice.add(product);
-        }
-
-        Collections.sort(productsPrice);
-        Collections.reverse(productsPrice);
-        return productsPrice;
+        List<Double>expectedRegularPriceList = MainProductComponents.getRegularProductPrice();
+        Collections.sort(expectedRegularPriceList);
+        Collections.reverse(expectedRegularPriceList);
+        return expectedRegularPriceList;
     }
-
-
-
-
-
 
 }
 

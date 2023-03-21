@@ -1,11 +1,9 @@
 package ui;
 
 import com.github.javafaker.Faker;
-import framework.pages.BasePage;
 import framework.pages.MainPage;
 import framework.pages.RegisterPage;
 import org.assertj.core.api.Assertions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Date;
@@ -21,7 +19,6 @@ public class ThirdCase extends BaseTest {
         String emailAddress = faker.internet().emailAddress();
         String password = faker.internet().password();
         Date dateOfBirthday = faker.date().birthday();
-
         mainPage.goToSignInPage()
                 .clickOnNoAccountButton()
                 .selectSocialTitle()
@@ -38,8 +35,6 @@ public class ThirdCase extends BaseTest {
         Assertions.assertThat(mainPage.getCurrentSignUpUserName())
                 .as("check")
                 .isEqualTo(expectedFirstName + " " + expectedLastName);
-
     }
-
 
 }

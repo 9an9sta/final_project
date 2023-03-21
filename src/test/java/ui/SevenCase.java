@@ -20,7 +20,7 @@ public class SevenCase extends BaseTest{
                 .as("Some product hasn't old or new price")
                 .isNotNull();
         List<String> expectedProductPriceWithDiscount = pricesDropPage.getExpectedProductPriceWithDiscount();
-        List<String> actualProductPriceWithDiscount = MainProductComponents.getPriceFromComponents();
+        List<String> actualProductPriceWithDiscount = MainProductComponents.getProductPriceFromPage();
         softly.assertThat(actualProductPriceWithDiscount)
                 .as("Promo price for every product calculates incorrect")
                 .containsExactlyElementsOf(expectedProductPriceWithDiscount);

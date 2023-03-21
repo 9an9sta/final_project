@@ -7,7 +7,6 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,15 +29,9 @@ public class MainPage extends BasePage {
   private final By artMenuCategoryLocator = By.xpath("//li[@id='category-9']/a");
   private final By artMenuCategoryItemsLocator = By.xpath("//li[@id='category-9']/div/ul/li/a");
   public static final By mainProductsComponentsLocator = By.xpath("//div[contains(@class, 'js-product')]");
-//  public static final By mainProductsComponentsLocator = By.xpath("//div[@class='thumbnail-container reviews-loaded']");
   private final By footerPricesDropButtonLocator = By.xpath("//footer//li/a[@id='link-product-page-prices-drop-1']");
   private final By allProductsButtonLocator = By.xpath("//a[contains(@class, 'all-product-link')]");
-//  @Step("Switch to Home page frame")
-//  public MainPage switchToFrame() {
-//    log.info("Switch to Home page frame");
-//    switchToFrameByLocator(mainPageFrame);
-//    return this;
-//  }
+
   @Step("Getting footer news text from [Main page]")
   public String getFooterNewsTextLocator() {
     log.info("Getting footer news text from [Main page]");
@@ -93,21 +86,7 @@ public class MainPage extends BasePage {
   log.info("Get current Sign Up username");
     return find(currentSignUpUserNameLocator).getText();
   }
-//  @Step("Get submenu item from Clothes category")
-//  public List<String> getItemsFromClothesCategory(){
-//  log.info("Get submenu item from Clothes category");
-//    return getItemsFromCategory(clothesMenuCategoryLocator, clothesMenuCategoryItemsLocator);
-//  }
-//  @Step("Get submenu item from Accessories category")
-//  public List<String> getItemsFromAccessoriesCategory(){
-//  log.info("Get submenu item from Accessories category");
-//    return getItemsFromCategory(accessoriesMenuCategoryLocator, accessoriesMenuCategoryItemsLocator);
-//  }
-//  @Step("Get submenu item from Art category")
-//  public List<String> getItemsFromArtCategory(){
-//  log.info("Get submenu item from Art category");
-//    return getItemsFromCategory(artMenuCategoryLocator, artMenuCategoryItemsLocator);
-//  }
+
   @Step("Click on Footer Prices Drop")
   public PricesDropPage clickOnFooterPricesDropButton(){
   log.info("Click on Footer Prices Drop");
@@ -175,8 +154,6 @@ public class MainPage extends BasePage {
     return expectedItemList;
   }
 
-
-
   @Step("Hover to Menu element")
   public void hoverToElement(By categoryMenu) {
     log.info("Hover to Menu element");
@@ -194,34 +171,5 @@ public class MainPage extends BasePage {
     }
     return items;
   }
-
-//  @Step("Get items from submenu")
-//  public List<String> getItemsFromCategory(By hoverToElementLocator, By getMenuCategoryLocator) {
-//    log.info("Get items from submenu");
-//    Actions actions = new Actions(BasePage.getDriver());
-//    actions.moveToElement(find(hoverToElementLocator));
-//    actions.build().perform();
-//    List<WebElement> clothesItems = findAll(getMenuCategoryLocator);
-//    List<String> items = new ArrayList<String>();
-//    for (WebElement element : clothesItems) {
-//      String text = element.getText();
-//      items.add(text);
-//    }
-//    return items;
-//  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

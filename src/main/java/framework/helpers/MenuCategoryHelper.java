@@ -1,9 +1,5 @@
 package framework.helpers;
 
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
-
 public class MenuCategoryHelper {
     public enum MenuCategory {
         CLOTHES,

@@ -3,7 +3,6 @@ package ui;
 import framework.pages.MainPage;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-
 import java.util.List;
 
 @Test
@@ -20,11 +19,6 @@ public class SecondCase extends BaseTest{
             .as("Ukrainian language aren't present")
             .contains("Українська");
     softly.assertAll();
-
-
-
-
   }
-
 
 }
