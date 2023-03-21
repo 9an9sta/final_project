@@ -7,6 +7,8 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
+import java.util.Date;
+
 
 public class FourthCase extends BaseTest{
     private final MainPage mainPage = new MainPage();
@@ -15,15 +17,19 @@ public class FourthCase extends BaseTest{
 
     @Test
     public void registrationWithInvalidData(){
-        mainPage.switchToFrame()
-                .goToSignInPage()
+        String lastName = faker.name().lastName();
+        String emailAddress = faker.internet().emailAddress();
+        String password = faker.internet().password();
+        Date dateOfBirthday = faker.date().birthday();
+
+        mainPage.goToSignInPage()
                 .clickOnNoAccountButton()
                 .selectSocialTitle()
                 .setInvalidFirstName()
-                .setLastNameField(faker.name().lastName())
-                .setEmailField(faker.internet().emailAddress())
-                .setPasswordField(faker.internet().password())
-                .setBirthdayField(faker.date().birthday())
+                .setLastNameField(lastName)
+                .setEmailField(emailAddress)
+                .setPasswordField(password)
+                .setBirthdayField(dateOfBirthday)
                 .chooseReceiveOffersFromOurPartnersCheckBox()
                 .chooseCustomerDataPrivacyCheckBox()
                 .chooseSignUpForOurNewsletterCheckBox()

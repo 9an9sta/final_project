@@ -2,7 +2,6 @@ package framework.pages.components;
 
 import framework.pages.BasePage;
 import framework.pages.MainPage;
-import framework.pages.PricesDropPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -10,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +19,8 @@ public class MainProductComponents {
     private String regularPrice;
     private String price;
     private String discount;
+
+    //By xpath = locator
 
     public MainProductComponents(WebElement container){
         try {
@@ -48,21 +48,25 @@ public class MainProductComponents {
         }
     }
 
-    @Step("Get all components")
-    public static List<MainProductComponents> getComponentsFromPage(By locator) {
+    @Step("Get all products")
+    public static List<MainProductComponents> getProductsFromPage() {
         log.info("Get all components");
         List<MainProductComponents> products = new ArrayList<>();
-        List<WebElement> containers = BasePage.findAll(locator);
+        List<WebElement> containers = BasePage.findAll(MainPage.mainProductsComponentsLocator);
         for (WebElement container : containers) {
             MainProductComponents mainComponents = new MainProductComponents(container);
             products.add(mainComponents);
         }
         return products;
     }
+
+
+
     @Step("Get all product name in product components")
     public static List<String> getNameFromComponents(){
+        List<MainProductComponents> products = getProductsFromPage();
         log.info("Get all product name in product components");
-        List<MainProductComponents> products = getComponentsFromPage(MainPage.mainProductsComponentsLocator);
+         // викликати раз в тесты ы передати лысту в цей метод
         List<String> productsName = new ArrayList<>();
         for (MainProductComponents product : products) {
             if (product.getName() == null) {
@@ -76,7 +80,7 @@ public class MainProductComponents {
     @Step("Get all product price in product components")
     public static List<String> getPriceFromComponents(){
         log.info("Get all product price in product components");
-        List<MainProductComponents> products = getComponentsFromPage(MainPage.mainProductsComponentsLocator);
+        List<MainProductComponents> products = getProductsFromPage();
         List<String> productsPrice = new ArrayList<>();
         for (MainProductComponents product : products) {
             if (product.getPrice() == null) {
@@ -90,7 +94,7 @@ public class MainProductComponents {
     @Step("Get all Regular prices in product components")
     public  static List<String> getRegularPriceFromComponents() {
         log.info("Get all Regular prices in product components");
-        List<MainProductComponents> products = getComponentsFromPage(PricesDropPage.priceDropComponentLocator);
+        List<MainProductComponents> products = getProductsFromPage();
         List<String> productsRegularPrice = new ArrayList<>();
         for (MainProductComponents product : products) {
             productsRegularPrice.add(product.getRegularPrice().replace("€",""));

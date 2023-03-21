@@ -12,6 +12,9 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static framework.pages.BasePage.waitUntilElementToBeClickable;
+
 @Getter
 @Log4j2
 public class HomeProductComponent {
@@ -51,8 +54,7 @@ public class HomeProductComponent {
     @Step("Get products name from Home Page")
     public static List<String> getProductsName(){
         log.info("Get products name from Home Page");
-        MainPage mainPage = new MainPage();
-        mainPage.waitUntilElementToBeClickable(HomePage.homeProductsComponentsLocator,10);
+        waitUntilElementToBeClickable(HomePage.homeProductsComponentsLocator,10);
         List<HomeProductComponent> products = getComponentsFromHomePage(HomePage.homeProductsComponentsLocator);
         List<String> productsName = new ArrayList<>();
         for (HomeProductComponent product : products) {
@@ -63,8 +65,7 @@ public class HomeProductComponent {
     @Step("Get product price from Home Page")
     public static List<Double> getProductPrice(){
         log.info("Get product price from Home Page");
-        MainPage mainPage = new MainPage();
-        mainPage.waitUntilElementToBeClickable(HomePage.homeProductsComponentsLocator,10);
+        waitUntilElementToBeClickable(HomePage.homeProductsComponentsLocator,10);
         List<HomeProductComponent> products = getComponentsFromHomePage(HomePage.homeProductsComponentsLocator);
         List<Double> productsPrice = new ArrayList<>();
         for (HomeProductComponent product : products) {

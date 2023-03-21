@@ -1,5 +1,6 @@
 package framework.pages;
 
+import framework.helpers.MenuCategoryHelper;
 import framework.pages.components.MainProductComponents;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Log4j2
@@ -15,7 +17,6 @@ public class MainPage extends BasePage {
   private final By footerNewsTextLocator = By.xpath("//footer//p[@id='block-newsletter-label']");
   private final By footerUnsubscribeMessageLocator = By.xpath("//footer//form/div//p");
   private final By footerSubscribeButtonLocator = By.xpath("//footer//form//input[@value='Subscribe']");
-  String mainPageFrame = "framelive";
   private final By headerLanguageSelectorLocator = By.xpath("//header//ul[@aria-labelledby='language-selector-label']/li");
   private final By headerLanguageSelectorValueLocator = By.xpath("//header//ul[@aria-labelledby='language-selector-label']/li/a");
   private final By headerLanguageButtonLocator = By.xpath("//button[@aria-label='Language dropdown']");
@@ -28,15 +29,16 @@ public class MainPage extends BasePage {
   private final By accessoriesMenuCategoryItemsLocator = By.xpath("//li[@id='category-6']/div/ul/li/a");
   private final By artMenuCategoryLocator = By.xpath("//li[@id='category-9']/a");
   private final By artMenuCategoryItemsLocator = By.xpath("//li[@id='category-9']/div/ul/li/a");
-  public static final By mainProductsComponentsLocator = By.xpath("//div[@class='thumbnail-container reviews-loaded']");
+  public static final By mainProductsComponentsLocator = By.xpath("//div[contains(@class, 'js-product')]");
+//  public static final By mainProductsComponentsLocator = By.xpath("//div[@class='thumbnail-container reviews-loaded']");
   private final By footerPricesDropButtonLocator = By.xpath("//footer//li/a[@id='link-product-page-prices-drop-1']");
   private final By allProductsButtonLocator = By.xpath("//a[contains(@class, 'all-product-link')]");
-  @Step("Switch to Home page frame")
-  public MainPage switchToFrame() {
-    log.info("Switch to Home page frame");
-    switchToFrameByLocator(mainPageFrame);
-    return this;
-  }
+//  @Step("Switch to Home page frame")
+//  public MainPage switchToFrame() {
+//    log.info("Switch to Home page frame");
+//    switchToFrameByLocator(mainPageFrame);
+//    return this;
+//  }
   @Step("Getting footer news text from [Main page]")
   public String getFooterNewsTextLocator() {
     log.info("Getting footer news text from [Main page]");
@@ -74,15 +76,10 @@ public class MainPage extends BasePage {
     return language;
   }
   @Step("Checking if languages selector has Ukraine language")
-  public Boolean checkIfLanguagesSelectorHasUkraineLanguage(){
+  public List<String> checkIfLanguagesSelectorHasUkraineLanguage(){
   log.info("Checking if languages selector has Ukraine language");
-  List<String> languages = getAllLanguagesFromLanguageSelector();
-    for (String currentLanguage : languages) {
-      if(currentLanguage.equals("Українська")){
-        return true;
-      }
-    }
-    return false;
+  return getAllLanguagesFromLanguageSelector();
+
   }
 
   @Step("Go to [Sign In] Page")
@@ -96,36 +93,21 @@ public class MainPage extends BasePage {
   log.info("Get current Sign Up username");
     return find(currentSignUpUserNameLocator).getText();
   }
-  @Step("Get items from submenu")
-  public List<String> getItemsFromCategory(By hoverToElementLocator, By getMenuCategoryLocator) {
-  log.info("Get items from submenu");
-    Actions actions = new Actions(BasePage.getDriver());
-    actions.moveToElement(find(hoverToElementLocator));
-    actions.build().perform();
-    List<WebElement> clothesItems = findAll(getMenuCategoryLocator);
-    List<String> items = new ArrayList<String>();
-    for (WebElement element : clothesItems) {
-      String text = element.getText();
-      items.add(text);
-    }
-    return items;
-
-  }
-  @Step("Get submenu item from Clothes category")
-  public List<String> getItemsFromClothesCategory(){
-  log.info("Get submenu item from Clothes category");
-    return getItemsFromCategory(clothesMenuCategoryLocator, clothesMenuCategoryItemsLocator);
-  }
-  @Step("Get submenu item from Accessories category")
-  public List<String> getItemsFromAccessoriesCategory(){
-  log.info("Get submenu item from Accessories category");
-    return getItemsFromCategory(accessoriesMenuCategoryLocator, accessoriesMenuCategoryItemsLocator);
-  }
-  @Step("Get submenu item from Art category")
-  public List<String> getItemsFromArtCategory(){
-  log.info("Get submenu item from Art category");
-    return getItemsFromCategory(artMenuCategoryLocator, artMenuCategoryItemsLocator);
-  }
+//  @Step("Get submenu item from Clothes category")
+//  public List<String> getItemsFromClothesCategory(){
+//  log.info("Get submenu item from Clothes category");
+//    return getItemsFromCategory(clothesMenuCategoryLocator, clothesMenuCategoryItemsLocator);
+//  }
+//  @Step("Get submenu item from Accessories category")
+//  public List<String> getItemsFromAccessoriesCategory(){
+//  log.info("Get submenu item from Accessories category");
+//    return getItemsFromCategory(accessoriesMenuCategoryLocator, accessoriesMenuCategoryItemsLocator);
+//  }
+//  @Step("Get submenu item from Art category")
+//  public List<String> getItemsFromArtCategory(){
+//  log.info("Get submenu item from Art category");
+//    return getItemsFromCategory(artMenuCategoryLocator, artMenuCategoryItemsLocator);
+//  }
   @Step("Click on Footer Prices Drop")
   public PricesDropPage clickOnFooterPricesDropButton(){
   log.info("Click on Footer Prices Drop");
@@ -142,7 +124,7 @@ public class MainPage extends BasePage {
   @Step("Checking that all prices is above zero")
   public List<Double> checkThatPriceFromMainProductsIsAboveZero(){
     log.info("Checking that all prices is above zero");
-    List<MainProductComponents> products = MainProductComponents.getComponentsFromPage(mainProductsComponentsLocator);
+    List<MainProductComponents> products = MainProductComponents.getProductsFromPage();
     List<Double> productsPrice = new ArrayList<>();
     for (MainProductComponents product : products) {
 
@@ -155,6 +137,78 @@ public class MainPage extends BasePage {
     }
     return productsPrice;
   }
+
+  public List<String> getCategoryFromHeaderMenu(MenuCategoryHelper.MenuCategory categoryMenu){
+    List<String> itemList = null;
+    switch (categoryMenu) {
+      case CLOTHES:
+        hoverToElement(clothesMenuCategoryLocator);
+        log.info("Get items from from [Clothes] submenu");
+        itemList = getItemsFromCategory(clothesMenuCategoryItemsLocator);
+        break;
+      case ACCESSORIES:
+        hoverToElement(accessoriesMenuCategoryLocator);
+        log.info("Get items from from [Accessories] submenu");
+        itemList = getItemsFromCategory(accessoriesMenuCategoryItemsLocator);
+        break;
+      case ART:
+        hoverToElement(artMenuCategoryLocator);
+        log.info("Get items from from [Art] submenu");
+        itemList = getItemsFromCategory(artMenuCategoryItemsLocator);
+        break;
+    }
+    return itemList;
+  }
+
+  public List<String> expectedCategoryItemsFromHeaderMenu(MenuCategoryHelper.MenuSubCategory menuSubCategory){
+    List<String> expectedItemList = null;
+    switch (menuSubCategory) {
+      case CLOTHES_ITEMS:
+        log.info("Get items from from [Clothes] submenu");
+        expectedItemList = new ArrayList<>(Arrays.asList("MEN", "WOMEN"));
+        break;
+      case ACCESSORIES_ITEMS:
+        log.info("Get items from from [Accessories] submenu");
+        expectedItemList = new ArrayList<>(Arrays.asList("STATIONERY", "HOME ACCESSORIES"));
+        break;
+    }
+    return expectedItemList;
+  }
+
+
+
+  @Step("Hover to Menu element")
+  public void hoverToElement(By categoryMenu) {
+    log.info("Hover to Menu element");
+    Actions actions = new Actions(BasePage.getDriver());
+    actions.moveToElement(find(categoryMenu));
+    actions.build().perform();
+  }
+  @Step("Get items from submenu")
+  public List<String> getItemsFromCategory(By getMenuCategoryLocator) {
+    List<WebElement> clothesItems = findAll(getMenuCategoryLocator);
+    List<String> items = new ArrayList<String>();
+    for (WebElement element : clothesItems) {
+      String text = element.getText();
+      items.add(text);
+    }
+    return items;
+  }
+
+//  @Step("Get items from submenu")
+//  public List<String> getItemsFromCategory(By hoverToElementLocator, By getMenuCategoryLocator) {
+//    log.info("Get items from submenu");
+//    Actions actions = new Actions(BasePage.getDriver());
+//    actions.moveToElement(find(hoverToElementLocator));
+//    actions.build().perform();
+//    List<WebElement> clothesItems = findAll(getMenuCategoryLocator);
+//    List<String> items = new ArrayList<String>();
+//    for (WebElement element : clothesItems) {
+//      String text = element.getText();
+//      items.add(text);
+//    }
+//    return items;
+//  }
 
 
 

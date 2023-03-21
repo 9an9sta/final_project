@@ -43,11 +43,11 @@ public class RegisterPage extends BasePage{
         return this;
     }
     @Step("Set first name field")
-    public String setFirstNameField(String firstName){
+    public RegisterPage setFirstNameField(String firstName){
         log.info("Set first name field");
         WebElement firstNameLocator = find(firstNameFieldLocator);
         firstNameLocator.sendKeys(firstName);
-        return firstName;
+        return this;
     }
     @Step("Set last name field")
     public RegisterPage setLastNameField(String lastName){
@@ -57,11 +57,11 @@ public class RegisterPage extends BasePage{
         return this;
     }
     @Step("Set valid last name field")
-    public String setValidLastNameField(String lastName){
+    public RegisterPage setValidLastNameField(String lastName){
         log.info("Set valid last name field");
         WebElement lastNameLocator = find(lastNameFieldLocator);
         lastNameLocator.sendKeys(lastName);
-        return lastName;
+        return this;
     }
     @Step("Set email field")
     public RegisterPage setEmailField(String email){

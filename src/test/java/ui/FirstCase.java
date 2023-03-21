@@ -8,7 +8,6 @@ public class FirstCase extends BaseTest{
   private final MainPage mainPage = new MainPage();
   @Test
   public void subscribeWithInvalidEmail(){
-    mainPage.switchToFrame();
     String actualFooterNewsText = mainPage.getFooterNewsTextLocator();
     SoftAssertions softly = new SoftAssertions();
     softly.assertThat(actualFooterNewsText)

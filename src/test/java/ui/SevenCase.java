@@ -13,8 +13,7 @@ public class SevenCase extends BaseTest{
     PricesDropPage pricesDropPage = new PricesDropPage();
     @Test
     public void priceDropCheck(){
-        mainPage.switchToFrame()
-                .clickOnFooterPricesDropButton();
+        mainPage.clickOnFooterPricesDropButton();
         List<String> actualProductNamesList = pricesDropPage.checkThatEveryProductHasOldAndNewPrice();
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(actualProductNamesList)
@@ -26,8 +25,5 @@ public class SevenCase extends BaseTest{
                 .as("Promo price for every product calculates incorrect")
                 .containsExactlyElementsOf(expectedProductPriceWithDiscount);
         softly.assertAll();
-
-
-
     }
 }

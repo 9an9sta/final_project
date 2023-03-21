@@ -39,14 +39,14 @@
       </plugin>
 
       <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <version>2.12.0</version>
         <artifactId>allure-maven</artifactId>
         <configuration>
           <reportDirectory>target/allure-report</reportDirectory>
           <reportVersion>${allure.integration.version}</reportVersion>
           <reportingOutputDirectory>target/allure-maven-plugin</reportingOutputDirectory>
         </configuration>
-        <groupId>io.qameta.allure</groupId>
-        <version>2.12.0</version>
       </plugin>
 
     </plugins>
@@ -135,7 +135,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <properties>
-    <allure.integration.version>2.13.2</allure.integration.version>
+    <allure.integration.version>2.20.1</allure.integration.version>
     <aspectj.version>1.9.19</aspectj.version>
     <browser>CHROME</browser>
     <browserHeight>900</browserHeight>

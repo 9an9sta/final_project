@@ -30,6 +30,7 @@ public class BaseTest {
     BasePage.setDriverThreadLocal(driver);
     BasePage.wait = new WebDriverWait(BasePage.getDriver(), Duration.ofSeconds(20));
     BasePage.waitUntilPageAreLoading(BasePage.loaderLocator);
+    BasePage.switchToFrame();
   }
 
   @AfterMethod(alwaysRun = true)

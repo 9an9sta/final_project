@@ -4,6 +4,7 @@ import framework.helpers.SortByHelpers.SortByFilter;
 import framework.pages.HomePage;
 import framework.pages.MainPage;
 import framework.pages.components.HomeProductComponent;
+import framework.pages.components.MainProductComponents;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
@@ -14,10 +15,10 @@ public class EighthCase extends BaseTest{
     HomePage homePage = new HomePage();
     @Test
     public void sortingCheck() {
-        mainPage.switchToFrame()
-                .clickOnAllProductsButton();
+        mainPage.clickOnAllProductsButton();
         homePage.clickOnSortByDropdownMenuButton(SortByFilter.NAME_A_TO_Z);
-        List<String> actualProductNamesListFromAToZ = HomeProductComponent.getProductsName();
+        List<MainProductComponents> componentsFromPage = MainProductComponents.getProductsFromPage();
+        List<String> actualProductNamesListFromAToZ = MainProductComponents.getNameFromComponents();
         List<String> expectedProductListAToZ = homePage.getSortedListByNameFromAToZ();
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(actualProductNamesListFromAToZ)

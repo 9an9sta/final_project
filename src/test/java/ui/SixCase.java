@@ -11,8 +11,7 @@ public class SixCase extends BaseTest{
     private final MainPage mainPage = new MainPage();
     @Test
     public void checkPopularProducts(){
-        mainPage.switchToFrame();
-        List<MainProductComponents> mainComponents = MainProductComponents.getComponentsFromPage(MainPage.mainProductsComponentsLocator);
+        List<MainProductComponents> mainComponents = MainProductComponents.getProductsFromPage();
         int actualMainPageProductCount = mainComponents.size();
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(actualMainPageProductCount)

@@ -30,6 +30,7 @@ public class BasePage {
     return DRIVER_THREAD_LOCAL.get();
   }
   public static By loaderLocator = By.id("loadingMessage");
+  static String mainPageFrame = "framelive";
   public static WebDriverWait wait;
 
 
@@ -54,13 +55,13 @@ public class BasePage {
 
   }
 
-  public void switchToFrameByLocator(String name){
+  public static void switchToFrameByLocator(String name){
     log.info("Switch to Frame");
     getDriver().switchTo().frame(name);
   }
 
 
-  public void waitUntilElementToBeClickable(By locator, int seconds) {
+  public static void waitUntilElementToBeClickable(By locator, int seconds) {
     log.info("Wait until element to be Clickable");
      new WebDriverWait(getDriver(), Duration.ofSeconds(seconds))
         .until(ExpectedConditions.elementToBeClickable(locator));
@@ -87,11 +88,14 @@ public class BasePage {
     Actions actions = new Actions(getDriver());
     actions.moveToElement(locator).perform();
   }
-  @Step("Wait until page loader was hide")
   public static void waitUntilPageAreLoading(By loaderLocator) {
     log.info("Wait until page loader was hide");
     WebElement loader = find(loaderLocator);
     wait.until(ExpectedConditions.invisibilityOf(loader));
+  }
+  public static void switchToFrame() {
+    log.info("Switch to Home page frame");
+    switchToFrameByLocator(mainPageFrame);
   }
 
 

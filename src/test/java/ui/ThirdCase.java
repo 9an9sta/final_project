@@ -8,21 +8,28 @@ import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Date;
+
 public class ThirdCase extends BaseTest {
     private final MainPage mainPage = new MainPage();
     private final RegisterPage registerPage = new RegisterPage();
     private static final Faker faker = new Faker();
     @Test
     public void registrationWithValidData(){
-        mainPage.switchToFrame()
-                .goToSignInPage()
+        String expectedFirstName = faker.name().firstName();
+        String expectedLastName = faker.name().lastName();
+        String emailAddress = faker.internet().emailAddress();
+        String password = faker.internet().password();
+        Date dateOfBirthday = faker.date().birthday();
+
+        mainPage.goToSignInPage()
                 .clickOnNoAccountButton()
-                .selectSocialTitle();
-        String expectedFirstName = registerPage.setFirstNameField(faker.name().firstName());
-        String expectedLastName = registerPage.setValidLastNameField(faker.name().lastName());
-        registerPage.setEmailField(faker.internet().emailAddress())
-                .setPasswordField(faker.internet().password())
-                .setBirthdayField(faker.date().birthday())
+                .selectSocialTitle()
+                .setFirstNameField(expectedFirstName)
+                .setValidLastNameField(expectedLastName)
+                .setEmailField(emailAddress)
+                .setPasswordField(password)
+                .setBirthdayField(dateOfBirthday)
                 .chooseReceiveOffersFromOurPartnersCheckBox()
                 .chooseCustomerDataPrivacyCheckBox()
                 .chooseSignUpForOurNewsletterCheckBox()
