@@ -9,11 +9,12 @@ import org.testng.annotations.Test;
 import java.util.Date;
 
 public class ThirdCase extends BaseTest {
+    private static final Faker faker = new Faker();
     private final MainPage mainPage = new MainPage();
     private final RegisterPage registerPage = new RegisterPage();
-    private static final Faker faker = new Faker();
+
     @Test
-    public void registrationWithValidData(){
+    public void registrationWithValidData() {
         String expectedFirstName = faker.name().firstName();
         String expectedLastName = faker.name().lastName();
         String emailAddress = faker.internet().emailAddress();

@@ -5,15 +5,17 @@ import framework.pages.MainPage;
 import framework.pages.RegisterPage;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
+
 import java.util.Date;
 
 
-public class FourthCase extends BaseTest{
+public class FourthCase extends BaseTest {
+    private static final Faker faker = new Faker();
     private final MainPage mainPage = new MainPage();
     private final RegisterPage registerPage = new RegisterPage();
-    private static final Faker faker = new Faker();
+
     @Test
-    public void registrationWithInvalidData(){
+    public void registrationWithInvalidData() {
         String lastName = faker.name().lastName();
         String emailAddress = faker.internet().emailAddress();
         String password = faker.internet().password();

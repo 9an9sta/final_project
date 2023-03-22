@@ -4,12 +4,14 @@ import framework.pages.MainPage;
 import framework.pages.components.MainProductComponents;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
+
 import java.util.List;
 
-public class SixCase extends BaseTest{
+public class SixCase extends BaseTest {
     private final MainPage mainPage = new MainPage();
+
     @Test
-    public void checkPopularProducts(){
+    public void checkPopularProducts() {
         List<MainProductComponents> mainComponents = MainProductComponents.getProductsFromPage();
         int actualMainPageProductCount = mainComponents.size();
         SoftAssertions softly = new SoftAssertions();

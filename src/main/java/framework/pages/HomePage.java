@@ -5,21 +5,22 @@ import framework.pages.components.MainProductComponents;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 @Log4j2
-public class HomePage extends BasePage{
-    private final By sortByDropdownMenuButtonLocator = By.xpath("//button[@aria-label='Sort by selection']");
+public class HomePage extends BasePage {
     public static By homeProductsComponentsLocator = By.xpath("//div[@class='products row']/div");
+    private final By sortByDropdownMenuButtonLocator = By.xpath("//button[@aria-label='Sort by selection']");
     private final By pageLoadLocator = By.xpath("//div[@class='faceted-overlay']");
 
-@Step("Click on Sort By dropdown menu Button and select the option")
-    public void clickOnSortByDropdownMenuButton(SortByHelpers.SortByFilter sortByValue){
-    log.info("Click on Sort By dropdown menu Button and select the option");
+    @Step("Click on Sort By dropdown menu Button and select the option")
+    public void clickOnSortByDropdownMenuButton(SortByHelpers.SortByFilter sortByValue) {
+        log.info("Click on Sort By dropdown menu Button and select the option");
         find(sortByDropdownMenuButtonLocator).click();
-
         String sortBy = null;
         switch (sortByValue) {
             case BEST_SELLERS:
@@ -41,52 +42,56 @@ public class HomePage extends BasePage{
                 sortBy = "Price, high to low";
                 break;
         }
-        getDriver().findElement(By.xpath("//div[contains(@class,'products-sort-order')]/div/a[contains(text(), '" + sortBy +"')]")).click();
-    waitUntilPageAreLoading(pageLoadLocator);
+        getDriver().findElement(By.xpath("//div[contains(@class,'products-sort-order')]/div/a[contains(text(), '" + sortBy + "')]")).click();
+        waitUntilPageAreLoading(pageLoadLocator);
 
     }
+
     @Step("Get sorted By Name list from A to Z")
-    public List<String> getSortedListByNameFromAToZ(){
-    log.info("Get sorted By Name list from A to Z");
+    public List<String> getSortedListByNameFromAToZ() {
+        log.info("Get sorted By Name list from A to Z");
         List<String> actualProductNamesList = MainProductComponents.getProductNameFromPage();
-        List<String> productsName = new ArrayList<>();
+        List<String> productsNameFromAToZ = new ArrayList<>();
         for (String product : actualProductNamesList) {
-            productsName.add(product);
+            productsNameFromAToZ.add(product);
         }
-        productsName.sort(String.CASE_INSENSITIVE_ORDER);
-        return productsName;
+        productsNameFromAToZ.sort(String.CASE_INSENSITIVE_ORDER);
+        return productsNameFromAToZ;
     }
+
     @Step("Get sorted By Name list from Z to A")
-    public List<String> getSortedListByNameFromZToA(){
-    log.info("Get sorted By Name list from Z to A");
+    public List<String> getSortedListByNameFromZToA() {
+        log.info("Get sorted By Name list from Z to A");
         List<String> actualProductNamesList = MainProductComponents.getProductNameFromPage();
-        List<String> productsName = new ArrayList<>();
+        List<String> productsNameFromZToA = new ArrayList<>();
         for (String product : actualProductNamesList) {
-            productsName.add(product);
+            productsNameFromZToA.add(product);
         }
         Comparator<String> reverseOrder = Comparator.reverseOrder();
-        productsName.sort(reverseOrder);
-        return productsName;
+        productsNameFromZToA.sort(reverseOrder);
+        return productsNameFromZToA;
     }
-    @Step("Get sorted By Price list from Low to High")
-    public List<Double> getSortedListPriceToLowToHigh(){
-    log.info("Get sorted By Price list from Low to High");
-        List<Double> actualProductPriceList = MainProductComponents.getProductPrice();
-        List<Double> productsPrice = new ArrayList<>();
-        for (Double product : actualProductPriceList) {
-            productsPrice.add(product);
-        }
-        Collections.sort(productsPrice);
 
-        return productsPrice;
+    @Step("Get sorted By Price list from Low to High")
+    public List<Double> getSortedListPriceToLowToHigh() {
+        log.info("Get sorted By Price list from Low to High");
+        List<Double> actualProductPriceList = MainProductComponents.getProductPriceFromHomePage();
+        List<Double> productsPriceFromLowToHigh = new ArrayList<>();
+        for (Double product : actualProductPriceList) {
+            productsPriceFromLowToHigh.add(product);
+        }
+        Collections.sort(productsPriceFromLowToHigh);
+
+        return productsPriceFromLowToHigh;
     }
+
     @Step("Get sorted By Price list from High to Low")
-    public List<Double> getSortedListPriceToHighToLow(){
-    log.info("Get sorted By Price list from High to Low");
-        List<Double>expectedRegularPriceList = MainProductComponents.getRegularProductPrice();
-        Collections.sort(expectedRegularPriceList);
-        Collections.reverse(expectedRegularPriceList);
-        return expectedRegularPriceList;
+    public List<Double> getSortedListPriceToHighToLow() {
+        log.info("Get sorted By Price list from High to Low");
+        List<Double> productPriceFromHighToLow = MainProductComponents.getProductRegularPriceFromPage();
+        Collections.sort(productPriceFromHighToLow);
+        Collections.reverse(productPriceFromHighToLow);
+        return productPriceFromHighToLow;
     }
 
 }

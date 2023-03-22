@@ -8,11 +8,12 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class SevenCase extends BaseTest{
+public class SevenCase extends BaseTest {
     MainPage mainPage = new MainPage();
     PricesDropPage pricesDropPage = new PricesDropPage();
+
     @Test
-    public void priceDropCheck(){
+    public void priceDropCheck() {
         mainPage.clickOnFooterPricesDropButton();
         List<String> actualProductNamesList = pricesDropPage.checkThatEveryProductHasOldAndNewPrice();
         SoftAssertions softly = new SoftAssertions();

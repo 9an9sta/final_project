@@ -9,9 +9,10 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class EighthCase extends BaseTest{
+public class EighthCase extends BaseTest {
     MainPage mainPage = new MainPage();
     HomePage homePage = new HomePage();
+
     @Test
     public void sortingCheck() {
         mainPage.clickOnAllProductsButton();
@@ -30,13 +31,13 @@ public class EighthCase extends BaseTest{
                 .as("Sort products as 'Name, Z to A' wasn't correctly")
                 .containsExactlyElementsOf(expectedProductListNameFromZToA);
         homePage.clickOnSortByDropdownMenuButton(SortByFilter.PRICE_lOW_TO_HIGH);
-        List<Double> actualProductListPriceFromLowToHigh = MainProductComponents.getProductPrice();
+        List<Double> actualProductListPriceFromLowToHigh = MainProductComponents.getProductPriceFromHomePage();
         List<Double> expectedProductListPriceFromLowToHigh = homePage.getSortedListPriceToLowToHigh();
         softly.assertThat(actualProductListPriceFromLowToHigh)
                 .as("Sort products as 'Price, low to high' wasn't correctly")
                 .containsExactlyElementsOf(expectedProductListPriceFromLowToHigh);
         homePage.clickOnSortByDropdownMenuButton(SortByFilter.PRICE_HIGH_TO_LOW);
-        List<Double> actualProductListPriceFromHighToLow = MainProductComponents.getRegularProductPrice();
+        List<Double> actualProductListPriceFromHighToLow = MainProductComponents.getProductRegularPriceFromPage();
         List<Double> expectedProductListPriceFromHighToLow = homePage.getSortedListPriceToHighToLow();
         softly.assertThat(actualProductListPriceFromHighToLow)
                 .as("Sort products as 'Price, high to low' wasn't correctly")

@@ -14,30 +14,30 @@ import java.time.Duration;
 @Log4j2
 public class BaseTest {
 
-  @BeforeMethod(alwaysRun = true)
-  public synchronized void setUp() {
-    int width = Integer.parseInt(System.getProperty("browser.width"));
-    int height = Integer.parseInt(System.getProperty("browser.height"));
-    String browser = System.getProperty("browser.type");
+    @BeforeMethod(alwaysRun = true)
+    public synchronized void setUp() {
+        int width = Integer.parseInt(System.getProperty("browser.width"));
+        int height = Integer.parseInt(System.getProperty("browser.height"));
+        String browser = System.getProperty("browser.type");
 
-    log.info("Tests will run at {}x{}", width, height);
+        log.info("Tests will run at {}x{}", width, height);
 
-    WebDriver driver = BrowserFactory.getBrowser(BrowserFactory.Browsers.valueOf(browser));
-    log.info("Open website");
-    driver.get("https://demo.prestashop.com/");
-    driver.manage().window().setSize(new Dimension(width, height));
-    BasePage.setDriverThreadLocal(driver);
-    BasePage.wait = new WebDriverWait(BasePage.getDriver(), Duration.ofSeconds(20));
-    BasePage.waitUntilPageAreLoading(BasePage.loaderLocator);
-    BasePage.switchToFrame();
-  }
-
-  @AfterMethod(alwaysRun = true)
-  public void quite() {
-    if (BasePage.getDriverThreadLocal() != null) {
-      BasePage.getDriver().quit();
-      BasePage.getDriverThreadLocal().remove();
+        WebDriver driver = BrowserFactory.getBrowser(BrowserFactory.Browsers.valueOf(browser));
+        log.info("Open website");
+        driver.get("https://demo.prestashop.com/");
+        driver.manage().window().setSize(new Dimension(width, height));
+        BasePage.setDriverThreadLocal(driver);
+        BasePage.wait = new WebDriverWait(BasePage.getDriver(), Duration.ofSeconds(20));
+        BasePage.waitUntilPageAreLoading(BasePage.loaderLocator);
+        BasePage.switchToFrame();
     }
-  }
+
+    @AfterMethod(alwaysRun = true)
+    public void quite() {
+        if (BasePage.getDriverThreadLocal() != null) {
+            BasePage.getDriver().quit();
+            BasePage.getDriverThreadLocal().remove();
+        }
+    }
 
 }

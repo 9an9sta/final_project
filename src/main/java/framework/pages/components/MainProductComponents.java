@@ -1,5 +1,6 @@
 package framework.pages.components;
 
+import framework.helpers.ListHelper;
 import framework.pages.BasePage;
 import framework.pages.HomePage;
 import framework.pages.MainPage;
@@ -9,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class MainProductComponents {
     private String price;
     private String discount;
 
-    public MainProductComponents(WebElement container){
+    public MainProductComponents(WebElement container) {
         try {
             this.name = container.findElement(By.xpath(".//div[@class='product-description']//a")).getText();
         } catch (NoSuchElementException e) {
@@ -31,7 +33,7 @@ public class MainProductComponents {
 
         try {
             this.regularPrice = container.findElement(By.xpath(".//span[@class='regular-price']")).getText();
-        } catch(org.openqa.selenium.StaleElementReferenceException e) {
+        } catch (org.openqa.selenium.StaleElementReferenceException e) {
             this.price = container.findElement(By.xpath(".//span[@class='regular-price']")).getText();
         } catch (NoSuchElementException e) {
             this.regularPrice = null;
@@ -63,10 +65,10 @@ public class MainProductComponents {
     }
 
     @Step("Get all product name in product components")
-    public static List<String> getProductNameFromPage(){
+    public static List<String> getProductNameFromPage() {
         List<MainProductComponents> products = getProductsFromPage();
         log.info("Get all product name in product components");
-         // викликати раз в тесты ы передати лысту в цей метод
+        // викликати раз в тесты ы передати лысту в цей метод
         List<String> productsName = new ArrayList<>();
         for (MainProductComponents product : products) {
             if (product.getName() == null) {
@@ -79,7 +81,7 @@ public class MainProductComponents {
     }
 
     @Step("Get all product price in product components")
-    public static List<String> getProductPriceFromPage(){
+    public static List<String> getProductPriceFromPage() {
         log.info("Get all product price in product components");
         List<MainProductComponents> products = getProductsFromPage();
         List<String> productsPrice = new ArrayList<>();
@@ -87,56 +89,36 @@ public class MainProductComponents {
             if (product.getPrice() == null) {
                 return null;
             } else {
-                productsPrice.add(product.getPrice().replace("€",""));
+                productsPrice.add(product.getPrice().replace("€", ""));
             }
         }
         return productsPrice;
     }
 
-    @Step("Get all Regular prices in product components")
-    public  static List<String> getProductRegularPriceFromPage() {
-        log.info("Get all Regular prices in product components");
-        List<MainProductComponents> products = getProductsFromPage();
-        List<String> productsRegularPrice = new ArrayList<>();
-        for (MainProductComponents product : products) {
-            productsRegularPrice.add(product.getRegularPrice().replace("€",""));
-        }
-        return productsRegularPrice;
-    }
-
     @Step("Get product price from Home Page")
-    public static List<Double> getRegularProductPrice(){
+    public static List<Double> getProductRegularPriceFromPage() {
         log.info("Get product price from Home Page");
-        waitUntilElementToBeClickable(HomePage.homeProductsComponentsLocator,10);
+        waitUntilElementToBeClickable(HomePage.homeProductsComponentsLocator, 10);
         List<MainProductComponents> products = getProductsFromPage();
         List<String> productsPrice = new ArrayList<>();
         for (MainProductComponents product : products) {
-            if(product.getRegularPrice() != null){
-                productsPrice.add(product.getRegularPrice().replace("€",""));
+            if (product.getRegularPrice() != null) {
+                productsPrice.add(product.getRegularPrice().replace("€", ""));
             } else {
-                productsPrice.add(product.getPrice().replace("€",""));
+                productsPrice.add(product.getPrice().replace("€", ""));
             }
         }
-        return restoreStringValueAsDouble(productsPrice);
-    }
-
-    public static List<Double> restoreStringValueAsDouble(List<String> list){
-        log.info("Restore String list as Double list");
-        List<Double> productDoubleList = new ArrayList<>();
-        for (String product : list) {
-            productDoubleList.add(Double.parseDouble(product));
-        }
-        return productDoubleList;
+        return ListHelper.restoreStringValueAsDouble(productsPrice);
     }
 
     @Step("Get product price from Home Page")
-    public static List<Double> getProductPrice(){
+    public static List<Double> getProductPriceFromHomePage() {
         log.info("Get product price from Home Page");
-        waitUntilElementToBeClickable(HomePage.homeProductsComponentsLocator,10);
+        waitUntilElementToBeClickable(HomePage.homeProductsComponentsLocator, 10);
         List<MainProductComponents> products = getProductsFromPage();
         List<Double> productsPrice = new ArrayList<>();
         for (MainProductComponents product : products) {
-            productsPrice.add(Double.parseDouble(product.getPrice().replace("€","")));
+            productsPrice.add(Double.parseDouble(product.getPrice().replace("€", "")));
         }
         return productsPrice;
     }

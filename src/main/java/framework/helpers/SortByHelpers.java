@@ -1,7 +1,7 @@
 package framework.helpers;
 
 public class SortByHelpers {
-    public enum SortByFilter{
+    public enum SortByFilter {
         BEST_SELLERS,
         RELEVANCE,
         NAME_A_TO_Z,
