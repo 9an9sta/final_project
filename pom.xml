@@ -24,8 +24,6 @@
                         <browser.type>${browser}</browser.type>
                         <browser.width>${browserWidth}</browser.width>
                     </systemPropertyVariables>
-                    <threadCount>2</threadCount>
-
                 </configuration>
                 <dependencies>
                     <dependency>

@@ -11,7 +11,7 @@ Project contains 8 Test:
 * Test case #8 (Sorting check)
 
 Command for custom Suit run:
-`Dsuite=“suitFileName”`
+`-Dsuite=“suitFileName”`
 
 Command for running all test(running test with @Test annotation):
 `mvn clean test`
@@ -26,13 +26,13 @@ Command for watching allure report:
 `allure:serve`
 
 Command for using custom window height:
-`DbrowserHeight=height`
+`-DbrowserHeight=height`
 
 Command for using custom window width:
-`DbrowserWidth=width`
+`-DbrowserWidth=width`
 
 Command for using custom browser:
-`Dbrowser=browserName`
+`-Dbrowser=browserName`
 
-Command for using custom Thread count:
-`Dthreads=thredCount`
+Command for using custom thread count:
+`-Dthreads=thredCount`
