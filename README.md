@@ -35,4 +35,4 @@ Command for using custom browser:
 `-Dbrowser=browserName`
 
 Command for using custom thread count:
-`-Dthreads=thredCount`
+`-DthreadCount=thredCount`
