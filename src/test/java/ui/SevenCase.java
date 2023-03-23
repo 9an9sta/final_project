@@ -15,10 +15,14 @@ public class SevenCase extends BaseTest {
     @Test
     public void priceDropCheck() {
         mainPage.clickOnFooterPricesDropButton();
-        List<String> actualProductNamesList = pricesDropPage.checkThatEveryProductHasOldAndNewPrice();
+        List<String> actualProductOldPriceList = pricesDropPage.getProductOldPriceFromPage();
+        List<String> actualProductNewPriceList = MainProductComponents.getProductPriceFromPage();
         SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(actualProductNamesList)
-                .as("Some product hasn't old or new price")
+        softly.assertThat(actualProductOldPriceList)
+                .as("Some product hasn't old price")
+                .isNotNull();
+        softly.assertThat(actualProductNewPriceList)
+                .as("Some product hasn't new price")
                 .isNotNull();
         List<String> expectedProductPriceWithDiscount = pricesDropPage.getExpectedProductPriceWithDiscount();
         List<String> actualProductPriceWithDiscount = MainProductComponents.getProductPriceFromPage();

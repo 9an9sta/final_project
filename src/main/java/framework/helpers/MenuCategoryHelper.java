@@ -10,7 +10,6 @@ public class MenuCategoryHelper {
     public enum MenuSubCategory {
         CLOTHES_ITEMS,
         ACCESSORIES_ITEMS,
-        ART_ITEMS,
     }
 
 }

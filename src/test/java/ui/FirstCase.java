@@ -9,12 +9,12 @@ public class FirstCase extends BaseTest {
 
     @Test
     public void subscribeWithInvalidEmail() {
-        String actualFooterNewsText = mainPage.getFooterNewsTextLocator();
+        String actualFooterNewsText = mainPage.getFooterNewsText();
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(actualFooterNewsText)
                 .as("Footer news text on Main page is wrong")
                 .isEqualTo("Get our latest news and special sales");
-        String actualFooterUnsubscribeMessage = mainPage.getFooterUnsubscribeMessageLocator();
+        String actualFooterUnsubscribeMessage = mainPage.getFooterUnsubscribeMessage();
         softly.assertThat(actualFooterUnsubscribeMessage)
                 .as("Footer unsubscribe message on Main page is wrong")
                 .isEqualTo("You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.");

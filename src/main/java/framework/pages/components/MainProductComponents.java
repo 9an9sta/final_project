@@ -68,7 +68,6 @@ public class MainProductComponents {
     public static List<String> getProductNameFromPage() {
         List<MainProductComponents> products = getProductsFromPage();
         log.info("Get all product name in product components");
-        // викликати раз в тесты ы передати лысту в цей метод
         List<String> productsName = new ArrayList<>();
         for (MainProductComponents product : products) {
             if (product.getName() == null) {

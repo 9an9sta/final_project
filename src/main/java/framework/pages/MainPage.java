@@ -21,7 +21,6 @@ public class MainPage extends BasePage {
     private final By headerLanguageSelectorLocator = By.xpath("//header//ul[@aria-labelledby='language-selector-label']/li");
     private final By headerLanguageSelectorValueLocator = By.xpath("//header//ul[@aria-labelledby='language-selector-label']/li/a");
     private final By headerLanguageButtonLocator = By.xpath("//button[@aria-label='Language dropdown']");
-//    private final By headerLanguageElementWaiterLocator = By.xpath("//li/a[contains(text(), 'македонски јазик')]");
     private final By signInButtonLocator = By.xpath("//div[@class='user-info']/a");
     private final By currentSignUpUserNameLocator = By.xpath("//div[@class='user-info']//span");
     private final By clothesMenuCategoryLocator = By.xpath("//li[@id='category-3']/a");
@@ -34,13 +33,13 @@ public class MainPage extends BasePage {
     private final By allProductsButtonLocator = By.xpath("//a[contains(@class, 'all-product-link')]");
 
     @Step("Getting footer news text from [Main page]")
-    public String getFooterNewsTextLocator() {
+    public String getFooterNewsText() {
         log.info("Getting footer news text from [Main page]");
         return find(footerNewsTextLocator).getText();
     }
 
     @Step("Getting footer unsubscribe message from [Main page]")
-    public String getFooterUnsubscribeMessageLocator() {
+    public String getFooterUnsubscribeMessage() {
         log.info("Getting footer unsubscribe message from [Main page]");
         return find(footerUnsubscribeMessageLocator).getText();
     }
@@ -90,17 +89,17 @@ public class MainPage extends BasePage {
     }
 
     @Step("Click on Footer Prices Drop")
-    public PricesDropPage clickOnFooterPricesDropButton() {
+    public void clickOnFooterPricesDropButton() {
         log.info("Click on Footer Prices Drop");
         find(footerPricesDropButtonLocator).click();
-        return new PricesDropPage();
+        new PricesDropPage();
     }
 
     @Step("Click on All Products button")
-    public HomePage clickOnAllProductsButton() {
+    public void clickOnAllProductsButton() {
         log.info("Click on All Products button");
         find(allProductsButtonLocator).click();
-        return new HomePage();
+        new HomePage();
     }
 
     @Step("Checking that all prices is above zero")

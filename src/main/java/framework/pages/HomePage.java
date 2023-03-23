@@ -6,10 +6,7 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Log4j2
 public class HomePage extends BasePage {
@@ -52,8 +49,8 @@ public class HomePage extends BasePage {
         log.info("Get sorted By Name list from A to Z");
         List<String> actualProductNamesList = MainProductComponents.getProductNameFromPage();
         List<String> productsNameFromAToZ = new ArrayList<>();
-        for (String product : actualProductNamesList) {
-            productsNameFromAToZ.add(product);
+        for (String product : Objects.requireNonNull(actualProductNamesList)) {
+            productsNameFromAToZ.add(Objects.requireNonNull(product));
         }
         productsNameFromAToZ.sort(String.CASE_INSENSITIVE_ORDER);
         return productsNameFromAToZ;
@@ -64,8 +61,8 @@ public class HomePage extends BasePage {
         log.info("Get sorted By Name list from Z to A");
         List<String> actualProductNamesList = MainProductComponents.getProductNameFromPage();
         List<String> productsNameFromZToA = new ArrayList<>();
-        for (String product : actualProductNamesList) {
-            productsNameFromZToA.add(product);
+        for (String product : Objects.requireNonNull(actualProductNamesList)) {
+            productsNameFromZToA.add(Objects.requireNonNull(product));
         }
         Comparator<String> reverseOrder = Comparator.reverseOrder();
         productsNameFromZToA.sort(reverseOrder);
@@ -78,7 +75,7 @@ public class HomePage extends BasePage {
         List<Double> actualProductPriceList = MainProductComponents.getProductPriceFromHomePage();
         List<Double> productsPriceFromLowToHigh = new ArrayList<>();
         for (Double product : actualProductPriceList) {
-            productsPriceFromLowToHigh.add(product);
+            productsPriceFromLowToHigh.add(Objects.requireNonNull(product));
         }
         Collections.sort(productsPriceFromLowToHigh);
 

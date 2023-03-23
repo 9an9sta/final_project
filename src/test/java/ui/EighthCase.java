@@ -17,7 +17,6 @@ public class EighthCase extends BaseTest {
     public void sortingCheck() {
         mainPage.clickOnAllProductsButton();
         homePage.clickOnSortByDropdownMenuButton(SortByFilter.NAME_A_TO_Z);
-        List<MainProductComponents> componentsFromPage = MainProductComponents.getProductsFromPage();
         List<String> actualProductNamesListFromAToZ = MainProductComponents.getProductNameFromPage();
         List<String> expectedProductListAToZ = homePage.getSortedListByNameFromAToZ();
         SoftAssertions softly = new SoftAssertions();

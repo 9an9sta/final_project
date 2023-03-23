@@ -16,7 +16,7 @@ public class MyListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        log.info("******************** The best test ever ********************");
+        System.out.println("=========> [" + iTestResult.getName() + "] - PASSED <=========");
     }
 
     @Override
